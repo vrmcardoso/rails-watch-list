@@ -16,24 +16,29 @@
           <li>
             <%= link_to "Add movie", new_list_bookmark_path(@list), class: "nav-link" %>
           </li>
+          <li>
+            <%= link_to "delete", list_path(@list), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "nav-link" %>
+          </li>
       </ul>
     </div>
   </div>
 </div>
 
-<% if @list.photo.attached? %>
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @list.photo.key %>);">
-    <div class="container">
-      <h1><strong><%= @list.name %></strong></h1>
+<div>
+  <% if @list.photo.attached? %>
+    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @list.photo.key %>);">
+      <div class="container">
+        <h1><strong><%= @list.name %></strong></h1>
+      </div>
     </div>
-  </div>
-<% else %>
-   <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path "vasco.jpg" %>);">
-    <div class="container">
-      <h1><strong><%= @list.name %></strong></h1>
-    </div>
-  </div
-<% end %>
+  <% else %>
+    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path "vasco.jpg" %>);">
+      <div class="container">
+        <h1><strong><%= @list.name %></strong></h1>
+      </div>
+    </div
+  <% end %>
+</div>
 
 <div class="card-container">
   <% @bookmarks.each do |bookmark| %>
