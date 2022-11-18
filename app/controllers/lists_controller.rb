@@ -7,14 +7,6 @@ class ListsController < ApplicationController
   def show
     @list = List.find(params[:id])
     @bookmarks = Bookmark.where(list_id: params[:id])
-    movie_ids = []
-    @bookmarks.each do |bookmark|
-      movie_ids << bookmark.movie_id
-    end
-    @movies = []
-    movie_ids.each do |movie|
-      @movies << Movie.find(movie)
-    end
   end
 
   def new
@@ -23,14 +15,16 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
-    @list.save
-
-    redirect_to lists_path
+    if @list.save
+      redirect_to lists_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
 
   def list_params
-    params.require(:list).permit(:name)
+    params.require(:list).permit(:name, :photo)
   end
 end
