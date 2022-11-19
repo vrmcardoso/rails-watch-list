@@ -43,7 +43,7 @@
 <div class="card-container">
   <% @bookmarks.each do |bookmark| %>
   <div class="card-product">
-    <%= cl_image_tag bookmark.movie.poster_url %>
+    <%= image_tag bookmark.movie.poster_url %>
     <div class="card-product-infos">
       <h2><%= bookmark.movie.title %></h2>
       <p><strong>rating: <%= bookmark.movie.rating %>⭐️</strong></p>
