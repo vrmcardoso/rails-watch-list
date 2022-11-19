@@ -1,4 +1,16 @@
 .card-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 200px;
+}
 
+.card-container-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container-list-main {
+  display: flex;
+  justify-content: space-between;
   margin: 5px 200px;
 }

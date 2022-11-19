@@ -13,12 +13,6 @@
           <li class="nav-item active">
             <%= link_to "Home", lists_path, class: "nav-link" %>
           </li>
-          <li>
-            <%= link_to "Add movie", new_list_bookmark_path(@list), class: "nav-link" %>
-          </li>
-          <li>
-            <%= link_to "delete", list_path(@list), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "nav-link" %>
-          </li>
       </ul>
     </div>
   </div>
@@ -41,15 +35,19 @@
 </div>
 
 <div class="card-container">
-  <% @bookmarks.each do |bookmark| %>
-  <div class="card-product m-3">
-    <%= image_tag bookmark.movie.poster_url %>
-    <div class="card-product-infos">
-      <h2><%= bookmark.movie.title %></h2>
-      <p><strong>rating: <%= bookmark.movie.rating %>⭐️</strong></p>
-      <p><%= bookmark.movie.overview %></p>
-      <%= link_to "delete", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-    </div>
+  <div class="card-container-buttons">
+    <%= link_to "Add movie", new_list_bookmark_path(@list), class: "btn btn-success m-2" %>
+    <%= link_to "Delete List", list_path(@list), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-warning m-2" %>
   </div>
+    <% @bookmarks.each do |bookmark| %>
+    <div class="card-product m-3">
+      <%= image_tag bookmark.movie.poster_url %>
+      <div class="card-product-infos">
+        <h2><%= bookmark.movie.title %></h2>
+        <p><strong>rating: <%= bookmark.movie.rating %>⭐️</strong></p>
+        <p><%= bookmark.movie.overview %></p>
+        <%= link_to "delete", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger mt-1 mb-1" %>
+      </div>
+    </div>
   <% end %>
 </div>
